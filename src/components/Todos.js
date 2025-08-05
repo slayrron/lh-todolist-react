@@ -1,14 +1,31 @@
-
+import { useState } from 'react'
 
 function Todos({todos, updateTodolist}) {
 
-    function addToTodos(todo) {
+    const [todo, updateTodo] = useState("")
+    const [isNewTodoTabOpen, setIsNewTodoTabOpen] = useState(false)
+
+    function addToTodos() {
         updateTodolist([...todos, {todo}])
+        updateTodo("")
+        setIsNewTodoTabOpen(false)
     }
 
     return (
         <div>
-            <button onClick={() => addToTodos("todo")}>+</button>
+            <button onClick={() => setIsNewTodoTabOpen(true)}>+</button>
+            { isNewTodoTabOpen ? (
+                <div>
+                    <input
+                        placeholder="Entrez votre nouvelle tache"
+                        value={todo} 
+                        onChange={(e) => updateTodo(e.target.value)}
+                    />
+                    <button onClick={addToTodos}>Ajouter la tache</button>
+                </div>
+
+            ) : null
+            }
         </div>
     )
 }
