@@ -1,18 +1,19 @@
 import { useState } from 'react'
 
-function Todos({todos, updateTodolist}) {
+function Todos({todos, updateTodos, ongoings, updateOngoings}) {
 
     const [todo, updateTodo] = useState("")
     const [isNewTodoTabOpen, setIsNewTodoTabOpen] = useState(false)
 
     function addToTodos() {
-        updateTodolist([...todos, {todo}])
+        updateTodos([...todos, {todo}])
         updateTodo("")
         setIsNewTodoTabOpen(false)
     }
 
     return (
-        <div>
+        <div className='todolist'>
+            <h2>Todos</h2>
             <button onClick={() => setIsNewTodoTabOpen(true)}>+</button>
             { isNewTodoTabOpen ? (
                 <div>
@@ -26,7 +27,14 @@ function Todos({todos, updateTodolist}) {
 
             ) : null
             }
-        </div>
+            <ul>
+                {todos.map(({todo}, index) => (
+                <div className="todoline" key={`${todo}-${index}`}>
+                    <span onClick={() => updateOngoings([...ongoings, {name: todo}])} className="todotask">{todo}</span>
+                </div>
+                ))}
+            </ul>
+      </div>
     )
 }
 

@@ -1,0 +1,18 @@
+.todolist, .ongoing {
+    display: inline-block;
+    vertical-align: top;
+    width: 33%;
+}
+
+.todoline { 
+    margin-bottom: 25px; 
+}
+
+.todotask {
+    display: block;
+    width: 100px;
+    border: 2px solid black;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+}
