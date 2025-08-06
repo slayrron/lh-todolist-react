@@ -1,20 +1,32 @@
 import { useState } from 'react'
+import Transfer from './Transfer.js'
 
-function Todos({todos, updateTodos, ongoings, updateOngoings}) {
+let nextId = 1
+
+function Todos({todos, updateTodos, 
+    ongoings, updateOngoings, 
+    wantToModify, setWantToModify,
+    idToTransfer, setIdToTransfer}) {
 
     const [todo, updateTodo] = useState("")
     const [isNewTodoTabOpen, setIsNewTodoTabOpen] = useState(false)
 
     function addToTodos() {
-        updateTodos([...todos, {todo}])
+        updateTodos([...todos, {id: nextId, category: 'todo', name: todo}])
+        nextId += 1
         updateTodo("")
         setIsNewTodoTabOpen(false)
     }
 
+    function prepareTransfer(idTargeted) {
+        setWantToModify(true)
+        setIdToTransfer(idTargeted)
+    }
+
     return (
         <div className='todolist'>
-            <h2>Todos</h2>
-            <button onClick={() => setIsNewTodoTabOpen(true)}>+</button>
+            <h2>Todos <button onClick={() => setIsNewTodoTabOpen(true)}>+</button></h2>
+            
             { isNewTodoTabOpen ? (
                 <div>
                     <input
@@ -28,9 +40,19 @@ function Todos({todos, updateTodos, ongoings, updateOngoings}) {
             ) : null
             }
             <ul>
-                {todos.map(({todo}, index) => (
+                {todos.map((task, index) => (
                 <div className="todoline" key={`${todo}-${index}`}>
-                    <span onClick={() => updateOngoings([...ongoings, {name: todo}])} className="todotask">{todo}</span>
+                    <span onClick={() => prepareTransfer(task.id)} className="todotask">{task.name}</span>
+                    {wantToModify && task.id === idToTransfer ? (
+                        <Transfer
+                            task={task}
+                            setWantToModify={setWantToModify}
+                            todos={todos}
+                            updateTodos={updateTodos}
+                            ongoings={ongoings}
+                            updateOngoings={updateOngoings}
+                        />
+                ) : null}
                 </div>
                 ))}
             </ul>

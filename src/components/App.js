@@ -4,8 +4,11 @@ import Ongoings from './Ongoings'
 import '../styles/Todos.css'
 
 function App() {
+
   const [todos, updateTodos] = useState([])
   const [ongoings, updateOngoings] = useState([])
+  const [wantToModify, setWantToModify] = useState(false)
+  const [idToTransfer, setIdToTransfer] = useState("")
 
   return (
     <div className="App">
@@ -13,9 +16,15 @@ function App() {
       <Todos
             todos={todos} updateTodos={updateTodos} 
             ongoings={ongoings} updateOngoings={updateOngoings}
+            wantToModify={wantToModify} setWantToModify={setWantToModify}
+            idToTransfer={idToTransfer} setIdToTransfer={setIdToTransfer}
+            
       />
-      <Ongoings 
+      <Ongoings
+            todos={todos} updateTodos={updateTodos} 
             ongoings={ongoings} updateOngoings={updateOngoings}
+            wantToModify={wantToModify} setWantToModify={setWantToModify}
+            idToTransfer={idToTransfer} setIdToTransfer={setIdToTransfer}
       />
       
     </div>
