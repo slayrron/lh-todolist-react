@@ -1,8 +1,12 @@
 import { useState } from "react"
 
 
-function Transfer({task, setWantToModify, todos, updateTodos, ongoings, updateOngoings}) {
-    const categories = ["todo", "ongoing"]
+function Transfer({task, setWantToModify, 
+    todos, updateTodos, 
+    ongoings, updateOngoings,
+    finished, updateFinished}) {
+
+    const categories = ["todo", "ongoing", "finished"]
     const [selectedCategory, setSelectedCategory] = useState('')
     
 
@@ -11,11 +15,20 @@ function Transfer({task, setWantToModify, todos, updateTodos, ongoings, updateOn
             updateTodos([...todos, {id: transferingTask.id, category: categories[0], name: transferingTask.name}])
             
             updateOngoings(ongoings.filter(item => item.id !== transferingTask.id))
+            updateFinished(finished.filter(item => item.id !== transferingTask.id))
+            
         }
         else if (selectedCategory === categories[1]) {
             updateOngoings([...ongoings, {id: transferingTask.id, category: categories[1], name: transferingTask.name}])
             
             updateTodos(todos.filter(item => item.id !== transferingTask.id))
+            updateFinished(finished.filter(item => item.id !== transferingTask.id))
+        }
+        else if (selectedCategory === categories[2]) {
+            updateFinished([...finished, {id: transferingTask.id, category: categories[2], name: transferingTask.name}])
+            
+            updateTodos(todos.filter(item => item.id !== transferingTask.id))
+            updateOngoings(ongoings.filter(item => item.id !== transferingTask.id))
         }
         setWantToModify(false)
     }

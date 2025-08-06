@@ -4,7 +4,8 @@ import Transfer from './Transfer.js'
 let nextId = 1
 
 function Todos({todos, updateTodos, 
-    ongoings, updateOngoings, 
+    ongoings, updateOngoings,
+    finished, updateFinished,
     wantToModify, setWantToModify,
     idToTransfer, setIdToTransfer}) {
 
@@ -24,7 +25,7 @@ function Todos({todos, updateTodos,
     }
 
     return (
-        <div className='todolist'>
+        <div className='titlelist'>
             <h2>Todos <button onClick={() => setIsNewTodoTabOpen(true)}>+</button></h2>
             
             { isNewTodoTabOpen ? (
@@ -51,6 +52,8 @@ function Todos({todos, updateTodos,
                             updateTodos={updateTodos}
                             ongoings={ongoings}
                             updateOngoings={updateOngoings}
+                            finished={finished}
+                            updateFinished={updateFinished}
                         />
                 ) : null}
                 </div>

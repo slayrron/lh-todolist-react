@@ -1,15 +1,30 @@
-.todolist, .ongoing {
+h1, h2 {
+    text-align: center;
+}
+
+ul {
+    padding-inline-start: 0px;
+}
+
+.titlelist {
     display: inline-block;
     vertical-align: top;
     width: 33%;
 }
 
+.finished {
+    display: inline-block;
+    vertical-align: top;
+    width: auto
+}
+
 .todoline { 
-    margin-bottom: 25px; 
+    margin-bottom: 25px;
+    text-align: center;
 }
 
 .todotask {
-    display: block;
+    display: inline-block;
     width: 100px;
     border: 2px solid black;
     padding: 10px;

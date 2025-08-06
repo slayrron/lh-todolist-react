@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState } from "react";
 import Transfer from './Transfer'
 
-function Ongoings({todos, updateTodos, 
+function Finished({todos, updateTodos, 
     ongoings, updateOngoings,
     finished, updateFinished,
     wantToModify, setWantToModify,
@@ -14,14 +14,14 @@ function Ongoings({todos, updateTodos,
 
     return (
         <div className='titlelist'>
-            <h2>Ongoing</h2>
+            <h2>Finished</h2>
             <ul>
-                {ongoings.map((ongoing, index) => (
-                    <div className="todoline" key={`${ongoing}-${index}`}>
-                        <span onClick={() => prepareTransfer(ongoing.id)} className="todotask">{ongoing.name}</span>
-                        {wantToModify && ongoing.id === idToTransfer ? (
+                {finished.map((f, index) => (
+                    <div className="todoline" key={`${f}-${index}`}>
+                        <span onClick={() => prepareTransfer(f.id)} className="todotask">{f.name}</span>
+                        {wantToModify && f.id === idToTransfer ? (
                             <Transfer
-                                task={ongoing}
+                                task={f}
                                 setWantToModify={setWantToModify}
                                 todos={todos}
                                 updateTodos={updateTodos}
@@ -38,4 +38,4 @@ function Ongoings({todos, updateTodos,
     )
 }
 
-export default Ongoings
+export default Finished
