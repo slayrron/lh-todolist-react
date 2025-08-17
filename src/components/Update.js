@@ -1,4 +1,5 @@
 import { useState } from "react"
+import "../styles/Update.css"
 
 
 function Update({task, setWantToModify, 
@@ -63,34 +64,39 @@ function Update({task, setWantToModify,
 
     return (
         <div>
-            <h3>
-                titre : <input 
-                    value={newTaskName}
-                    onChange={(e) => setNewTaskName(e.target.value)}    
+            <div className="overlay"></div>
+            <div className="updatePopup">
+                <h3>
+                    titre : <input 
+                        value={newTaskName}
+                        onChange={(e) => setNewTaskName(e.target.value)}    
+                    />
+                </h3>
+                <div>
+                <textarea
+                    value={newTaskDescription}
+                    onChange={(e) => setNewTaskDescription(e.target.value)}
+                    rows={4}
+                    cols={20}
                 />
-            </h3>
-            <div>
-            <input
-                value={newTaskDescription}
-                onChange={(e) => setNewTaskDescription(e.target.value)}
-            />
+                </div>
+                <div>
+                    Catégorie :  
+                    <select
+                        value={selectedCategory}
+                        onChange={(e) => setSelectedCategory(e.target.value)}>
+                        <option value={task.category}>{task.category}</option>
+                        {categories.map(category => (
+                            task.category !== category && 
+                                <option key={category} value={category}>{category}</option>
+                        ))}
+                    </select>
+                </div>
+                
+                <button onClick={() => applyModifications(task)}>Valider</button>
+                <button onClick={() => setWantToModify(false)}>Annuler</button>
+                <button onClick={() => deleteTask(task)}>Supprimer</button>
             </div>
-            <div>
-                Catégorie :  
-                <select
-                    value={selectedCategory}
-                    onChange={(e) => setSelectedCategory(e.target.value)}>
-                    <option value={task.category}>{task.category}</option>
-                    {categories.map(category => (
-                        task.category !== category && 
-                            <option key={category} value={category}>{category}</option>
-                    ))}
-                </select>
-            </div>
-            
-            <button onClick={() => applyModifications(task)}>Valider</button>
-            <button onClick={() => setWantToModify(false)}>Annuler</button>
-            <button onClick={() => deleteTask(task)}>Supprimer</button>
         </div>
     )
 }
