@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Transfer from './Transfer'
+import Update from './Update'
 
 function Ongoings({todos, updateTodos, 
     ongoings, updateOngoings,
@@ -20,7 +20,7 @@ function Ongoings({todos, updateTodos,
                     <div className="todoline" key={`${ongoing}-${index}`}>
                         <span onClick={() => prepareTransfer(ongoing.id)} className="todotask">{ongoing.name}</span>
                         {wantToModify && ongoing.id === idToTransfer ? (
-                            <Transfer
+                            <Update
                                 task={ongoing}
                                 setWantToModify={setWantToModify}
                                 todos={todos}

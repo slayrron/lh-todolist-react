@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Transfer from './Transfer.js'
+import Update from './Update'
 
 let nextId = 1
 
@@ -45,7 +45,7 @@ function Todos({todos, updateTodos,
                 <div className="todoline" key={`${todo}-${index}`}>
                     <span onClick={() => prepareTransfer(task.id)} className="todotask">{task.name}</span>
                     {wantToModify && task.id === idToTransfer ? (
-                        <Transfer
+                        <Update
                             task={task}
                             setWantToModify={setWantToModify}
                             todos={todos}
