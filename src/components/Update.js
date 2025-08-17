@@ -9,32 +9,34 @@ function Update({task, setWantToModify,
     const categories = ["todo", "ongoing", "finished"]
     const [selectedCategory, setSelectedCategory] = useState('')
     const [newTaskName, setNewTaskName] = useState(task.name)
+    const [newTaskDescription, setNewTaskDescription] = useState(task.description)
     
-    function updateTaskName(changingTask) {
+    function updateTaskNameAndDescription(changingTask) {
         changingTask.name = newTaskName
+        changingTask.description = newTaskDescription
     }
 
     function updateCategory(transferingTask) {
 
-        if (selectedCategory === "") {
+        if (transferingTask.category === selectedCategory) {
             return
         }
 
         if (selectedCategory === categories[0]) {
-            updateTodos([...todos, {id: transferingTask.id, category: categories[0], name: transferingTask.name}])
+            updateTodos([...todos, {id: transferingTask.id, name: transferingTask.name, category: categories[0], description: transferingTask.description}])
             
             updateOngoings(ongoings.filter(item => item.id !== transferingTask.id))
             updateFinished(finished.filter(item => item.id !== transferingTask.id))
             
         }
         else if (selectedCategory === categories[1]) {
-            updateOngoings([...ongoings, {id: transferingTask.id, category: categories[1], name: transferingTask.name}])
+            updateOngoings([...ongoings, {id: transferingTask.id, name: transferingTask.name, category: categories[1], description: transferingTask.description}])
             
             updateTodos(todos.filter(item => item.id !== transferingTask.id))
             updateFinished(finished.filter(item => item.id !== transferingTask.id))
         }
         else if (selectedCategory === categories[2]) {
-            updateFinished([...finished, {id: transferingTask.id, category: categories[2], name: transferingTask.name}])
+            updateFinished([...finished, {id: transferingTask.id, name: transferingTask.name, category: categories[2], description: transferingTask.description}])
             
             updateTodos(todos.filter(item => item.id !== transferingTask.id))
             updateOngoings(ongoings.filter(item => item.id !== transferingTask.id))
@@ -54,7 +56,7 @@ function Update({task, setWantToModify,
     }
 
     function applyModifications(updatedTask) {
-        updateTaskName(updatedTask)
+        updateTaskNameAndDescription(updatedTask)
         updateCategory(updatedTask)
         setWantToModify(false)
     }
@@ -67,15 +69,25 @@ function Update({task, setWantToModify,
                     onChange={(e) => setNewTaskName(e.target.value)}    
                 />
             </h3>
-            <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}>
-                <option value="">---</option>
-                {categories.map(category => (
-                    task.category !== category && 
-                        <option key={category} value={category}>{category}</option>
-                ))}
-            </select>
+            <div>
+            <input
+                value={newTaskDescription}
+                onChange={(e) => setNewTaskDescription(e.target.value)}
+            />
+            </div>
+            <div>
+                Catégorie :  
+                <select
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}>
+                    <option value={task.category}>{task.category}</option>
+                    {categories.map(category => (
+                        task.category !== category && 
+                            <option key={category} value={category}>{category}</option>
+                    ))}
+                </select>
+            </div>
+            
             <button onClick={() => applyModifications(task)}>Valider</button>
             <button onClick={() => setWantToModify(false)}>Annuler</button>
             <button onClick={() => deleteTask(task)}>Supprimer</button>

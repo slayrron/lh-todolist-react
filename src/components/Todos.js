@@ -13,7 +13,7 @@ function Todos({todos, updateTodos,
     const [isNewTodoTabOpen, setIsNewTodoTabOpen] = useState(false)
 
     function addToTodos() {
-        updateTodos([...todos, {id: nextId, category: 'todo', name: todo}])
+        updateTodos([...todos, {id: nextId, name: todo, category: 'todo', description: ""}])
         nextId += 1
         updateTodo("")
         setIsNewTodoTabOpen(false)
