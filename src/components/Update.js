@@ -7,7 +7,8 @@ function Update({task, setWantToModify,
     ongoings, updateOngoings,
     finished, updateFinished}) {
 
-    const categories = ["todo", "ongoing", "finished"]
+    const categories = {todo: "A Faire", ongoing: "En Cours", finished: "Terminées"}
+    const objkeys = Object.keys(categories)
     const [selectedCategory, setSelectedCategory] = useState('')
     const [newTaskName, setNewTaskName] = useState(task.name)
     const [newTaskDescription, setNewTaskDescription] = useState(task.description)
@@ -19,25 +20,26 @@ function Update({task, setWantToModify,
 
     function updateCategory(transferingTask) {
 
+
         if (transferingTask.category === selectedCategory) {
             return
         }
 
-        if (selectedCategory === categories[0]) {
-            updateTodos([...todos, {id: transferingTask.id, name: transferingTask.name, category: categories[0], description: transferingTask.description}])
+        if (selectedCategory === objkeys[0]) {
+            updateTodos([...todos, {id: transferingTask.id, name: transferingTask.name, category: objkeys[0], description: transferingTask.description}])
             
             updateOngoings(ongoings.filter(item => item.id !== transferingTask.id))
             updateFinished(finished.filter(item => item.id !== transferingTask.id))
             
         }
-        else if (selectedCategory === categories[1]) {
-            updateOngoings([...ongoings, {id: transferingTask.id, name: transferingTask.name, category: categories[1], description: transferingTask.description}])
+        else if (selectedCategory === objkeys[1]) {
+            updateOngoings([...ongoings, {id: transferingTask.id, name: transferingTask.name, category: objkeys[1], description: transferingTask.description}])
             
             updateTodos(todos.filter(item => item.id !== transferingTask.id))
             updateFinished(finished.filter(item => item.id !== transferingTask.id))
         }
-        else if (selectedCategory === categories[2]) {
-            updateFinished([...finished, {id: transferingTask.id, name: transferingTask.name, category: categories[2], description: transferingTask.description}])
+        else if (selectedCategory === objkeys[2]) {
+            updateFinished([...finished, {id: transferingTask.id, name: transferingTask.name, category: objkeys[2], description: transferingTask.description}])
             
             updateTodos(todos.filter(item => item.id !== transferingTask.id))
             updateOngoings(ongoings.filter(item => item.id !== transferingTask.id))
@@ -45,13 +47,13 @@ function Update({task, setWantToModify,
     }
 
     function deleteTask(task) {
-        if (task.category === categories[0]) {
+        if (task.category === objkeys[0]) {
             updateTodos(todos.filter(item => item.id !== task.id))
         }
-        else if (task.category === categories[1]) {
+        else if (task.category === objkeys[1]) {
             updateOngoings(ongoings.filter(item => item.id !== task.id))
         }
-        else if (task.category === categories[2]) {
+        else if (task.category === objkeys[2]) {
             updateFinished(finished.filter(item => item.id !== task.id))
         }
     }
@@ -77,10 +79,10 @@ function Update({task, setWantToModify,
                     <select
                         value={selectedCategory}
                         onChange={(e) => setSelectedCategory(e.target.value)}>
-                        <option value={task.category}>{task.category}</option>
-                        {categories.map(category => (
+                        <option value={task.category}>{categories[task.category]}</option>
+                        {Object.keys(categories).map(category => (
                             task.category !== category && 
-                                <option key={category} value={category}>{category}</option>
+                                <option key={category} value={category}>{categories[category]}</option>
                         ))}
                     </select>
                 </div>

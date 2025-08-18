@@ -14,7 +14,7 @@ function Finished({todos, updateTodos,
 
     return (
         <div className='titlelist'>
-            <h2>Finished</h2>
+            <h2>Terminées</h2>
             <ul>
                 {finished.map((f, index) => (
                     <div className="todoline" key={`${f}-${index}`}>

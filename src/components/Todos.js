@@ -26,7 +26,7 @@ function Todos({todos, updateTodos,
 
     return (
         <div className='titlelist'>
-            <h2>Todos <button onClick={() => setIsNewTodoTabOpen(true)}>+</button></h2>
+            <h2>A Faire <button onClick={() => setIsNewTodoTabOpen(true)}>+</button></h2>
             
             { isNewTodoTabOpen ? (
                 <div>

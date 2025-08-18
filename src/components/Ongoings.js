@@ -14,7 +14,7 @@ function Ongoings({todos, updateTodos,
 
     return (
         <div className='titlelist'>
-            <h2>Ongoing</h2>
+            <h2>En Cours</h2>
             <ul>
                 {ongoings.map((ongoing, index) => (
                     <div className="todoline" key={`${ongoing}-${index}`}>
