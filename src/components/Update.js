@@ -64,23 +64,15 @@ function Update({task, setWantToModify,
 
     return (
         <div>
-            <div className="overlay"></div>
+            <div className="overlay" onClick={() => setWantToModify(false)}></div>
             <div className="updatePopup">
-                <h3>
-                    titre : <input 
+                <div className="updateEntree">
+                    <input className="titleTask" 
                         value={newTaskName}
                         onChange={(e) => setNewTaskName(e.target.value)}    
                     />
-                </h3>
-                <div>
-                <textarea
-                    value={newTaskDescription}
-                    onChange={(e) => setNewTaskDescription(e.target.value)}
-                    rows={4}
-                    cols={20}
-                />
                 </div>
-                <div>
+                <div className="updateEntree">
                     Catégorie :  
                     <select
                         value={selectedCategory}
@@ -92,10 +84,21 @@ function Update({task, setWantToModify,
                         ))}
                     </select>
                 </div>
+
+                <div className="updateEntree">
+                    <textarea
+                        placeholder="Petite description ?"
+                        value={newTaskDescription}
+                        onChange={(e) => setNewTaskDescription(e.target.value)}
+                        rows={6}
+                        cols={30}
+                    />
+                </div>
                 
-                <button onClick={() => applyModifications(task)}>Valider</button>
-                <button onClick={() => setWantToModify(false)}>Annuler</button>
                 <button onClick={() => deleteTask(task)}>Supprimer</button>
+                <button onClick={() => setWantToModify(false)}>Annuler</button>
+                <button onClick={() => applyModifications(task)}>Valider</button>
+                
             </div>
         </div>
     )

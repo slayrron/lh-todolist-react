@@ -10,6 +10,12 @@ input {
     border-radius: 5px;
     padding: 2px;
 }
+
+textarea {
+    resize: none;
+    border: 1px solid black;
+}
+
 .titlelist {
     display: inline-block;
     vertical-align: top;
