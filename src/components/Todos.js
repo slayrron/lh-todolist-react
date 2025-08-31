@@ -25,8 +25,8 @@ function Todos({todos, updateTodos,
     }
 
     return (
-        <div className='titlelist'>
-            <h2>A Faire <button onClick={() => setIsNewTodoTabOpen(true)}>+</button></h2>
+        <div>
+            <h2 className='titlelist'>A Faire <button onClick={() => setIsNewTodoTabOpen(true)}>+</button></h2>
             
             { isNewTodoTabOpen ? (
                 <div>
@@ -43,7 +43,7 @@ function Todos({todos, updateTodos,
             <ul>
                 {todos.map((task, index) => (
                 <div className="todoline" key={`${todo}-${index}`}>
-                    <span onClick={() => prepareTransfer(task.id)} className="todotask">{task.name}</span>
+                    <span onClick={() => prepareTransfer(task.id)} className="todotask todo">{task.name}</span>
                     {wantToModify && task.id === idToTransfer ? (
                         <Update
                             task={task}

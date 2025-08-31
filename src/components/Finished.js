@@ -13,12 +13,12 @@ function Finished({todos, updateTodos,
     }
 
     return (
-        <div className='titlelist'>
-            <h2>Terminées</h2>
+        <div>
+            <h2 className='titlelist'>Terminées</h2>
             <ul>
                 {finished.map((f, index) => (
                     <div className="todoline" key={`${f}-${index}`}>
-                        <span onClick={() => prepareTransfer(f.id)} className="todotask">{f.name}</span>
+                        <span onClick={() => prepareTransfer(f.id)} className="todotask finished">{f.name}</span>
                         {wantToModify && f.id === idToTransfer ? (
                             <Update
                                 task={f}

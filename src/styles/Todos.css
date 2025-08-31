@@ -16,10 +16,21 @@ textarea {
     border: 1px solid black;
 }
 
+.grid {
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    min-height: 300px;
+}
+
 .titlelist {
-    display: inline-block;
-    vertical-align: top;
-    width: 33%;
+    border-bottom: 1px solid;
+    padding-bottom: 10px;
+}
+
+.ongoing-list {
+    border-right: 1px solid;
+    border-left: 1px solid;
 }
 
 .todoline { 
@@ -39,4 +50,16 @@ textarea {
 
 .todotask:hover {
     background-color: blanchedalmond;
+}
+
+.todo {
+    border-color: red;
+}
+
+.ongoing {
+    border-color: burlywood;
+}
+
+.finished {
+    border-color: #00ff00;
 }

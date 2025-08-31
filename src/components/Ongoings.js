@@ -13,12 +13,12 @@ function Ongoings({todos, updateTodos,
     }
 
     return (
-        <div className='titlelist'>
-            <h2>En Cours</h2>
+        <div className='ongoing-list'>
+            <h2 className='titlelist'>En Cours</h2>
             <ul>
                 {ongoings.map((ongoing, index) => (
                     <div className="todoline" key={`${ongoing}-${index}`}>
-                        <span onClick={() => prepareTransfer(ongoing.id)} className="todotask">{ongoing.name}</span>
+                        <span onClick={() => prepareTransfer(ongoing.id)} className="todotask ongoing">{ongoing.name}</span>
                         {wantToModify && ongoing.id === idToTransfer ? (
                             <Update
                                 task={ongoing}

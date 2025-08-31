@@ -15,28 +15,30 @@ function App() {
   return (
     <div className="App">
       <h1>TODO LIST</h1>
-      <Todos
-            todos={todos} updateTodos={updateTodos} 
-            ongoings={ongoings} updateOngoings={updateOngoings}
-            finished={finished} updateFinished={updateFinished}
-            wantToModify={wantToModify} setWantToModify={setWantToModify}
-            idToTransfer={idToTransfer} setIdToTransfer={setIdToTransfer}
-            
-      />
-      <Ongoings
-            todos={todos} updateTodos={updateTodos} 
-            ongoings={ongoings} updateOngoings={updateOngoings}
-            finished={finished} updateFinished={updateFinished}
-            wantToModify={wantToModify} setWantToModify={setWantToModify}
-            idToTransfer={idToTransfer} setIdToTransfer={setIdToTransfer}
-      />
-      <Finished
-            todos={todos} updateTodos={updateTodos} 
-            ongoings={ongoings} updateOngoings={updateOngoings}
-            finished={finished} updateFinished={updateFinished}
-            wantToModify={wantToModify} setWantToModify={setWantToModify}
-            idToTransfer={idToTransfer} setIdToTransfer={setIdToTransfer}
-      />
+      <div className='grid'>
+        <Todos
+              todos={todos} updateTodos={updateTodos} 
+              ongoings={ongoings} updateOngoings={updateOngoings}
+              finished={finished} updateFinished={updateFinished}
+              wantToModify={wantToModify} setWantToModify={setWantToModify}
+              idToTransfer={idToTransfer} setIdToTransfer={setIdToTransfer}
+              
+        />
+        <Ongoings
+              todos={todos} updateTodos={updateTodos} 
+              ongoings={ongoings} updateOngoings={updateOngoings}
+              finished={finished} updateFinished={updateFinished}
+              wantToModify={wantToModify} setWantToModify={setWantToModify}
+              idToTransfer={idToTransfer} setIdToTransfer={setIdToTransfer}
+        />
+        <Finished
+              todos={todos} updateTodos={updateTodos} 
+              ongoings={ongoings} updateOngoings={updateOngoings}
+              finished={finished} updateFinished={updateFinished}
+              wantToModify={wantToModify} setWantToModify={setWantToModify}
+              idToTransfer={idToTransfer} setIdToTransfer={setIdToTransfer}
+        />
+      </div>
     </div>
   );
 }
