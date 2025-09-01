@@ -29,3 +29,33 @@
     font-size: 20px;
     text-align: center;
 }
+
+.update-btn {
+    border-radius: 15px;
+}
+
+.delete-btn {
+    background-color: #ff7979;
+    border: 2px solid #ff0000;
+}
+
+.delete-btn:hover {
+    background-color: #ff0000;
+}
+
+.cancel-btn {
+    border: 2px solid #ff7979
+}
+
+.cancel-btn:hover {
+    background-color: #ff7979;
+}
+
+.save-btn {
+    background-color: #ccff7f;
+    border: 2px solid greenyellow;
+}
+
+.save-btn:hover {
+    background-color: greenyellow;
+}

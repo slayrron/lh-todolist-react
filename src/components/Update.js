@@ -96,11 +96,11 @@ function Update({task, setWantToModify,
                         cols={30}
                     />
                 </div>
-                
-                <button onClick={() => deleteTask(task)}>Supprimer</button>
-                <button onClick={() => setWantToModify(false)}>Annuler</button>
-                <button onClick={() => applyModifications(task)}>Valider</button>
-                
+                <div>
+                    <button className="update-btn delete-btn" onClick={() => deleteTask(task)}>Supprimer</button>
+                    <button className="update-btn cancel-btn" onClick={() => setWantToModify(false)}>Annuler</button>
+                    <button className="update-btn save-btn" onClick={() => applyModifications(task)}>Enregistrer</button>
+                </div>
             </div>
         </div>
     )

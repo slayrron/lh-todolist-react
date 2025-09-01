@@ -12,9 +12,18 @@ function App() {
   const [wantToModify, setWantToModify] = useState(false)
   const [idToTransfer, setIdToTransfer] = useState("")
 
+  function deleteAll() {
+    updateTodos([])
+    updateOngoings([])
+    updateFinished([])
+  }
+
   return (
     <div className="App">
-      <h1>TODO LIST</h1>
+      <div>
+        <h1>TODO LIST</h1>
+        <button onClick={deleteAll}>Tout supprimer</button>
+      </div>
       <div className='grid'>
         <Todos
               todos={todos} updateTodos={updateTodos} 
